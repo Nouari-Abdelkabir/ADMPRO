@@ -1,0 +1,80 @@
+.assistance-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.assistance-header h2 { color: #1e3a8a; margin: 0; }
+.header-actions { display: flex; gap: 10px; }
+.btn { padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; color: white; }
+.btn-blue { background: #3b82f6; }
+.btn-green { background: #10b981; }
+.btn-red { background: #ef4444; }
+.btn-back { background: #e5e7eb; color: #333; padding: 8px 15px; border-radius: 4px; border: none; cursor: pointer; font-weight: bold; }
+
+.filter-box { background: white; padding: 15px; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 5px; }
+.filter-box input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 200px; }
+
+.data-table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+.data-table th { background: #2c3e50; color: white; padding: 12px; text-align: left; }
+.data-table td { padding: 12px; border-bottom: 1px solid #eee; }
+.badge-cloture { background: #d1fae5; color: #065f46; padding: 3px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; }
+
+.tabs-container { display: flex; gap: 5px; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+.tab-btn { background: #f3f4f6; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; color: #4b5563; }
+.tab-btn.active { background: #1e3a8a; color: white; }
+.tab-content { display: none; background: white; padding: 20px; border-radius: 8px; border: 1px solid #eee; }
+.tab-content.active { display: block; }
+
+/* تصميم النافذة المنبثقة */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000;
+}
+.modal-content {
+    background: white; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    max-height: 90vh; overflow-y: auto;
+}
+.modal-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 15px 20px; border-bottom: 1px solid #eee;
+}
+.modal-header h3 { margin: 0; color: #333; }
+.modal-body { padding: 20px; }
+
+/* النموذج */
+label { display: block; font-size: 13px; color: #555; margin-bottom: 5px; font-weight: bold; }
+input, select, textarea {
+    width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 15px; font-family: inherit;
+}
+.form-title { color: #1e3a8a; margin: 15px 0 10px 0; border-bottom: 2px solid #eee; padding-bottom: 5px; font-size: 14px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+.date-filter { display: flex; align-items: center; gap: 8px; background: white; padding: 5px 10px; border-radius: 6px; border: 1px solid #ccc; }
+.date-filter label { margin: 0; font-size: 14px; }
+.date-filter input { margin: 0; padding: 5px; width: auto; border: none; outline: none; }
+
+btn-valide { background: #10b981; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold; margin-left: 5px; }
+.btn-valide:hover { background: #059669; }
+
+
+/* تصميم أزرار الموبايلات */
+.mobiles-nav { display: flex; gap: 10px; margin-bottom: 20px; }
+.mobile-btn { background: #e5e7eb; color: #374151; border: 1px solid #d1d5db; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; transition: 0.2s; }
+.mobile-btn.active { background: #1e3a8a; color: white; border-color: #1e3a8a; }
+.mobile-btn:hover:not(.active) { background: #d1d5db; }
+
+/* تنسيق الشبكة للنموذج */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; background: #f9fafb; padding: 15px; border-radius: 8px; border: 1px solid #e5e7eb; }
+.form-grid input, .form-grid select { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-top: 5px; }
+
+/* التبويبات الفرعية داخل Paramétrage */
+.sub-tabs { display: flex; gap: 10px; border-bottom: 2px solid #e5e7eb; margin-bottom: 20px; padding-bottom: 10px; }
+.sub-tab-btn { background: transparent; border: none; padding: 8px 15px; font-size: 14px; font-weight: bold; color: #6b7280; cursor: pointer; }
+.sub-tab-btn.active { color: #1e3a8a; border-bottom: 3px solid #1e3a8a; }
+.sub-tab-content { display: none; }
+.sub-tab-content.active { display: block; }
+.card-header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+
+
+.subview {
+    display: none;
+}
+.subview.active {
+    display: block;
+}

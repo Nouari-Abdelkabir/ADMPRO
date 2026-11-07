@@ -1,0 +1,152 @@
+<!-- القائمة الرئيسية للإعدادات -->
+<div id="subview-settings-menu" class="subview active">
+    <h1 class="page-title">⚙️ Paramètres Généraux</h1>
+    <div class="menu-grid">
+        <div class="menu-card" onclick="ouvrirSousVue('subview-troncons')"><div class="menu-icon">🛣️</div><h3>Tronçons</h3></div>
+        <div class="menu-card" onclick="ouvrirSousVue('subview-responsables')"><div class="menu-icon">👤</div><h3>Responsables</h3></div>
+        <div class="menu-card" onclick="ouvrirSousVue('subview-projet')"><div class="menu-icon">📋</div><h3>Paramètres Projet</h3></div>
+        <div class="menu-card" onclick="ouvrirSousVue('subview-semaines')"><div class="menu-icon">📅</div><h3>Semaines</h3></div>
+    </div>
+</div>
+
+<!-- شاشة المقاطع -->
+<div id="subview-troncons" class="subview">
+    <div class="view-header">
+        <button class="btn-back" onclick="ouvrirSousVue('subview-settings-menu')">← Retour</button>
+        <h2>🛣️ Gestion des Tronçons</h2>
+    </div>
+    <div class="form-box">
+        <input type="text" id="t_id" placeholder="ID (ex: T1)" style="flex:0.5;">
+        <input type="text" id="t_name" placeholder="Nom">
+        <input type="number" id="t_pkd" placeholder="PK Début">
+        <input type="number" id="t_pkf" placeholder="PK Fin">
+        <button onclick="ajouterTroncon()">➕ Ajouter</button>
+    </div>
+    <table>
+        <thead><tr><th>ID</th><th>Nom</th><th>PK Début</th><th>PK Fin</th><th>Actions</th></tr></thead>
+        <tbody id="troncons-body"></tbody>
+    </table>
+</div>
+
+<!-- شاشة المسؤولين -->
+<div id="subview-responsables" class="subview">
+    <div class="view-header">
+        <button class="btn-back" onclick="ouvrirSousVue('subview-settings-menu')">← Retour</button>
+        <h2>👤 Gestion des Responsables</h2>
+    </div>
+    <div class="form-box">
+        <input type="text" id="name" placeholder="Nom complet">
+        <select id="fonction" style="flex:1; padding:10px; border:1px solid #ccc; border-radius:5px;" onchange="toggleAutreFonction(this.value)">
+            <option value="">-- Choisir une fonction --</option>
+            <option value="Directeur Régional">Directeur Régional</option>
+            <option value="Adjoint viabilité">Adjoint viabilité</option>
+            <option value="Technicien Sécurité&viabilité">Technicien Sécurité & viabilité</option>
+            <option value="Conducteur Sécurité&viabilité">Conducteur Sécurité & viabilité</option>
+            <option value="manager de traffic">Manager de trafic</option>
+            <option value="Opérateur">Opérateur</option>
+            <option value="Chef de service Sécurité&viabilité">Chef de service Sécurité & viabilité</option>
+            <option value="Chef de division Sécurité&viabilité Marrakech">Chef de division Sécurité & viabilité Marrakech</option>
+            <option value="Chef de division Sécurité&viabilité Settat">Chef de division Sécurité & viabilité Settat</option>
+            <option value="Cadre administratif">Cadre administratif</option>
+            <option value="Agent administratif">Agent administratif</option>
+            <option value="Autres...">Autres...</option>
+        </select>
+        <input type="text" id="autre_fonction" placeholder="Précisez..." style="display:none; flex:1; padding:10px; border:1px solid #ccc; border-radius:5px;">
+        <button onclick="ajouterResponsable()">➕ Ajouter</button>
+    </div>
+    <table>
+        <thead><tr><th>Nom</th><th>Fonction</th><th>Tronçons</th><th>Actions</th></tr></thead>
+        <tbody id="table-body"></tbody>
+    </table>
+</div>
+
+<!-- شاشة الصفقات (Projet) -->
+<div id="subview-projet" class="subview">
+    <div class="view-header">
+        <button class="btn-back" onclick="ouvrirSousVue('subview-settings-menu')">← Retour</button>
+        <h2>📋 Paramètres Projet</h2>
+        <button class="btn-save" style="margin-left: auto; background: #10b981; padding: 8px 15px;" onclick="nouveauMarche()">➕ Nouvelle Marché</button>
+    </div>
+    
+    <div style="background:#e0f2fe; padding:15px; border-radius:8px; margin-bottom:20px;">
+        <label style="font-weight:bold; color:#1e3a8a;">Sélectionner un Marché :</label>
+        <select id="select_marche" onchange="chargerMarcheSelectionne()" style="width:100%; padding:10px; margin-top:5px; border-radius:5px; border:1px solid #bae6fd;">
+            <option value="">-- Nouveau Marché (Vide) --</option>
+        </select>
+    </div>
+
+    <form id="form-projet" onsubmit="sauvegarderProjet(event)">
+        <h3 class="form-title">🏢 Informations générales</h3>
+        <div class="grid-2">
+            <input type="text" id="p_marche_num" placeholder="Marché N° (ex: M001-26)">
+            <input type="text" id="p_marche_nom" placeholder="Nom du Marché">
+            <input type="text" id="p_maitre_ouvrage" placeholder="Maître d'ouvrage">
+            <input type="text" id="p_maitre_oeuvre" placeholder="Maître d'œuvre">
+            <input type="text" id="p_prestataire" placeholder="Prestataire">
+            <input type="text" id="p_entite" placeholder="Entité">
+            <input type="date" id="p_date_debut">
+            <input type="date" id="p_date_fin">
+        </div>
+        <textarea id="p_objet" placeholder="Objet du marché" rows="2" style="width:100%; margin-top:10px;"></textarea>
+
+        <h3 class="form-title">🖋️ Signatures</h3>
+        <div style="background:#f8fafc; padding:15px; border-radius:8px; border:1px solid #e2e8f0; margin-bottom:15px;">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+                <label style="width:120px;">Dressé par :</label>
+                <select id="sig_dresse_par" style="flex:1; padding:8px; border-radius:5px; border:1px solid #ccc;"></select>
+                <label>Date :</label>
+                <input type="date" id="sig_dresse_date" style="padding:8px; border-radius:5px; border:1px solid #ccc;">
+            </div>
+            <button type="button" onclick="toggleRemplacant()" style="background:#f59e0b; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer; font-size:12px; margin-bottom:10px;">🔄 Titulaire en congé ?</button>
+            <div id="div_remplacant" style="display:none; display:flex; align-items:center; gap:10px;">
+                <label style="width:120px;">Remplaçant :</label>
+                <select id="sig_remplacant" style="flex:1; padding:8px; border-radius:5px; border:1px solid #ccc;"></select>
+            </div>
+        </div>
+
+        <h3 class="form-title">🎓 Ingénieurs</h3>
+        <div style="background:#f8fafc; padding:15px; border-radius:8px; border:1px solid #e2e8f0; margin-bottom:15px;">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+                <label style="width:120px;">Validé par :</label>
+                <select id="p_ing_nom" style="flex:1; padding:8px; border-radius:5px; border:1px solid #ccc;"></select>
+                <label>Date :</label>
+                <input type="date" id="p_ing_date" style="padding:8px; border-radius:5px; border:1px solid #ccc;">
+            </div>
+        </div>
+
+        <h3 class="form-title">🏢 Entreprise</h3>
+        <div style="background:#f8fafc; padding:15px; border-radius:8px; border:1px solid #e2e8f0;">
+            <div style="display:flex; align-items:center; gap:10px;">
+                <label style="width:120px;">Accepté par :</label>
+                <input type="text" id="p_entreprise_nom" placeholder="Nom du représentant" style="flex:1; padding:8px; border-radius:5px; border:1px solid #ccc;">
+                <label>Date :</label>
+                <input type="date" id="p_entreprise_date" style="padding:8px; border-radius:5px; border:1px solid #ccc;">
+            </div>
+        </div>
+
+        <div style="margin-top:20px; text-align:right;">
+            <button type="submit" class="btn-save">💾 Enregistrer / Mettre à jour</button>
+        </div>
+    </form>
+</div>
+
+<!-- شاشة الأسابيع -->
+<div id="subview-semaines" class="subview">
+    <div class="view-header">
+        <button class="btn-back" onclick="ouvrirSousVue('subview-settings-menu')">← Retour</button>
+        <h2>📅 Gestion des Semaines</h2>
+    </div>
+    <p style="text-align:center; padding:40px; color:#888;">Section en cours de développement...</p>
+</div>
+
+<!-- نافذة التعديل -->
+<div id="edit-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); align-items:center; justify-content:center; z-index:1000;">
+    <div style="background:white; padding:20px; border-radius:8px; width:90%; max-width:400px;">
+        <h3 id="modal-title" style="margin-top:0; color:#1e3a8a;">Modifier</h3>
+        <div id="modal-body"></div>
+        <div style="text-align:right; margin-top:15px;">
+            <button onclick="fermerModal()" style="background:#ccc; border:none; padding:8px 15px; border-radius:4px; cursor:pointer; margin-left:5px;">Annuler</button>
+            <button onclick="sauvegarderModification()" style="background:#10b981; color:white; border:none; padding:8px 15px; border-radius:4px; cursor:pointer;">Enregistrer</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADM - Système de Gestion</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <div class="app-layout">
+        <!-- الشريط الجانبي -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>🛣️ ADM</h2>
+                <p>Système de Gestion</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" onclick="chargerModule('parametres', event)">
+                    <span class="icon">⚙️</span> Paramètres
+                </a>
+                <a href="#" class="nav-item" onclick="chargerModule('assistance', event)">
+                    <span class="icon">🚑</span> Assistance
+                </a>
+                <a href="#" class="nav-item" onclick="chargerModule('accidentologie', event)">
+                    <span class="icon">🚨</span> Accidentologie
+                </a>
+                <a href="#" class="nav-item" onclick="chargerModule('marche', event)">
+                    <span class="icon">📊</span> Marché
+                </a>
+            </nav>
+        </aside>
+
+        <!-- المحتوى الرئيسي (سيتم تحميل الملفات هنا) -->
+        <main class="main-content" id="main-content">
+            <!-- سيتم حقن محتوى HTML هنا ديناميكياً -->
+        </main>
+    </div>
+
+    <!-- ملف التنقل الرئيسي -->
+    <script src="app.js"></script>
+</body>
+</html>
